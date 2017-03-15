@@ -47,23 +47,38 @@ table {
 	border-spacing: 0;
 }
 
-
-h1 {
-	background-color: pink;
-	font-family: cursive;
-	font-size: 4em;
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-
-	/*
-	or
-	margin: 0 auto 0 auto;
-	*/
+body {
+  margin-top: 50px;
 }
 
-p {
-	text-align: center;
-	margin: 0 auto 0 auto;
-	max-width: 600px;
+.second {
+  background-color: pink;
+  left: 20px;
+  position: relative;
+  width: 100px;
+}
+
+
+.outer-box {
+  border: solid 1px black;
+  height: 300px;
+  position: relative;
+  width: 300px;
+}
+
+.inner-box {
+  background-color: red;
+  height: 25px;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 25px;
+}
+
+nav {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
 }

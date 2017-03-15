@@ -47,23 +47,16 @@ table {
 	border-spacing: 0;
 }
 
+/*
+This is how I center the content.
+*/
 
-h1 {
-	background-color: pink;
-	font-family: cursive;
-	font-size: 4em;
-	max-width: 600px;
-	margin-left: auto;
-	margin-right: auto;
-
-	/*
-	or
-	margin: 0 auto 0 auto;
-	*/
+.container {
+  background-color: gray;
+  margin: 0 auto 0 auto;
+  width: 600px;
 }
 
-p {
-	text-align: center;
-	margin: 0 auto 0 auto;
-	max-width: 600px;
+h1 {
+  border: solid 1px red;
 }
