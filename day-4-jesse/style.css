@@ -48,7 +48,6 @@ table {
 }
 
 body {
-  background-color: #333;
 }
 
 
@@ -136,4 +135,66 @@ nav .logo {
   padding: 20px 40px;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.hero-messaging a:hover {
+  background-color: rgb(220, 197, 102);
+}
+
+
+
+.recent-projects {
+  overflow: auto;
+  padding: 50px 0;
+}
+
+.projects-row {
+  margin: 0 auto;
+  width: 90%;
+}
+
+
+.project {
+  background-color: gray;
+  height: 200px;
+  outline: solid 1px red;
+
+
+
+  float: left;
+  width: 33.333333%;
+}
+
+
+
+
+
+.story {
+  background-color: rgb(100, 107, 111);
+  padding: 50px;
+}
+
+.story-details {
+  border: solid 1px yellow;
+  height: 400px;
+  width: 50%;
+}
+
+
+
+
+
+.what-i-do {
+  margin: 0 auto;
+  overflow: auto;
+  padding: 50px 0;
+  width: 90%;
+}
+
+.particular-thing {
+  background-color: pink;
+  float: left;
+  height: 200px;
+  outline: solid 1px red;
+  width: 25%;
 }
