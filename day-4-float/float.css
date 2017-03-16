@@ -1,0 +1,9 @@
+img {
+  float: left;
+  width: 100px;
+}
+
+p {
+  background-color: yellow;
+  line-height: 1.4em;
+}
