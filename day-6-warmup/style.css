@@ -1,5 +1,7 @@
 
 
+
+
 .unit {
   height: 200px;
 }
@@ -50,4 +52,16 @@ section {
 
 .section-2, .section-3 {
   border-top: 10px solid black;
+}
+
+
+
+
+@media (max-width: 600px) {
+
+  .section-1 .unit {
+    float: none;
+    width: 100%;
+  }
+
 }
