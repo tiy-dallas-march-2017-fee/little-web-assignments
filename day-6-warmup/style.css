@@ -1,0 +1,53 @@
+
+
+.unit {
+  height: 200px;
+}
+
+.unit-1 {
+  background-color: yellow;
+}
+
+.unit-2 {
+  background-color: red;
+}
+
+.unit-3 {
+  background-color: blue;
+}
+
+.unit-4 {
+  background-color: green;
+}
+
+.unit-5 {
+  background-color: pink;
+}
+
+.unit-6 {
+  background-color: salmon;
+}
+
+
+.section-1 .unit {
+  float: left;
+  width: 50%;
+}
+
+section {
+  clear: both;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.section-3 .unit {
+  float: left;
+  width: 33.333333%;
+}
+
+.section-2, .section-3 {
+  border-top: 10px solid black;
+}

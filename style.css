@@ -67,16 +67,16 @@ p {
   margin: 1em 0;
 }
 
-.day-list > li {
+.folder-list > li {
   border: solid 1px #DDD;
   padding: 10px;
 }
 
-.day-list li ul {
+.folder-list li ul {
   padding-left: 40px;
 }
 
-.day-list li li {
+.folder-list li li {
   line-height: 1.4em;
   list-style-type: disc;
 }
