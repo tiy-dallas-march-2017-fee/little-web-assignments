@@ -55,7 +55,12 @@ section {
 }
 
 
-
+@media (max-width: 800px) {
+  .section-3 .unit {
+    float: none;
+    width: 100%;
+  }
+}
 
 @media (max-width: 600px) {
 

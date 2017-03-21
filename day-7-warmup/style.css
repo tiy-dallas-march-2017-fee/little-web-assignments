@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+}
+
+header, footer {
+  background-color: gray;
+  color: #fff;
+}
+
+header {
+  padding: 30px 0;
+}
+
+footer {
+  clear: both;
+  padding: 10px 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.content {
+  background-color: red;
+  height: 300px;
+  padding: 1%;
+  width: 73%;
+  float: left;
+}
+
+.sidebar {
+  background-color: blue;
+  height: 300px;
+  float: left;
+  padding: 1%;
+  width: 23%;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+@media (max-width: 960px) {
+  .sidebar, .content {
+    float: none;
+    width: 98%;
+  }
+}

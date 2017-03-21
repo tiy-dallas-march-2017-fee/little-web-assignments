@@ -155,16 +155,12 @@ nav .logo {
   padding: 50px 60px;
 }
 
-.projects-row {
-  margin: 0 auto;
-  width: 90%;
-}
-
 
 .project {
 	text-align: center;
   float: left;
 	margin: 0 2% 50px 2%;
+	outline: solid 1px red;
   width: 29.333333%;
 }
 
@@ -222,4 +218,21 @@ nav .logo {
   height: 200px;
   outline: solid 1px red;
   width: 25%;
+}
+
+
+@media (max-width: 900px) {
+
+	.project {
+		width: 46%;
+	}
+
+}
+
+
+@media (max-width: 600px) {
+	.project {
+		float: none;
+		width: 96%;
+	}
 }
