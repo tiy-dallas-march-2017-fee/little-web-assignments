@@ -1,0 +1,43 @@
+
+.container {
+  border: solid 1px #000;
+  margin: 0 auto;
+  max-width: 960px;
+  overflow: auto;
+}
+
+.content {
+  min-height: 200px;
+  width: 49%;
+}
+
+.first .content {
+  background-color: pink;
+  margin: 1% 0 1% 1%;
+}
+
+.second .content {
+  background-color: yellow;
+  float: right;
+  margin: 1% 1% 1% 0;
+}
+
+.third .content {
+  background-color: blue;
+  margin: 1% 0 1% 1%;
+}
+
+@media (max-width: 700px) {
+
+  .first .content, .third .content {
+    margin-right: 1%;
+    width: 98%;
+  }
+
+  .second .content {
+    margin-left: 1%;
+    float: none;
+    width: 98%;
+  }
+
+}
