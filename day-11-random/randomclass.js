@@ -23,6 +23,7 @@ console.log(randomPeeps);
 
 
 //The while loop version
+/*
 while (peeps.length > 0) {
   var randomNumber = Math.random();
   randomNumber = randomNumber * peeps.length;
@@ -31,3 +32,4 @@ while (peeps.length > 0) {
   randomPeeps.push(peeps[randomNumber]);
   peeps.splice(randomNumber, 1);
 }
+*/
