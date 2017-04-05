@@ -56,7 +56,7 @@ nav {
   nav li {
     float: right;
     font-family: Helvetica, Verdana, sans-serif;
-    margin: 5px 10px 0 10px;
+    margin: 10px 10px 0 10px;
     text-transform: uppercase; }
   nav a {
     color: #FFF;
@@ -69,6 +69,9 @@ nav {
     float: left;
     height: 34px;
     margin: 0; }
+
+nav.opaque {
+  background-color: rgba(0, 0, 0, 0.5); }
 
 .hero {
   background-image: url("jesse-jump.jpg");
@@ -127,7 +130,6 @@ nav {
   text-align: center;
   float: left;
   margin: 0 2% 50px 2%;
-  outline: solid 1px red;
   width: 29.333333%; }
 
 .project img {
