@@ -10,15 +10,8 @@ theList.addEventListener('click', function(evt) {
     previouslySelected.classList.remove('selected');
   }
 
-  if (evt.target.tagName === 'LI' || evt.target.tagName === 'STRONG') {
-
-    if (evt.target.tagName === 'LI') {
-      evt.target.classList.add('selected');
-    }
-    else {
-      evt.target.parentElement.classList.add('selected');
-    }
-
+  if (evt.target.tagName === 'LI') {
+    evt.target.classList.add('selected');
   }
 
 
