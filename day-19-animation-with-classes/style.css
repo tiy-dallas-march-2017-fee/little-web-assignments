@@ -1,0 +1,23 @@
+
+.link {
+  background-image: url('link.png');
+  height: 125px;
+  width: 120px;
+}
+
+
+.position-1 {
+  background-position: 0 -650px;
+}
+
+.position-2 {
+  background-position: -120px -650px;
+}
+
+.position-3 {
+  background-position: -240px -650px;
+}
+
+.position-4 {
+  background-position: -360px -650px;
+}
