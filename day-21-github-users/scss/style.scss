@@ -1,0 +1,19 @@
+@import 'reset';
+
+
+
+#list-of-users {
+
+  li {
+    border-bottom: solid 1px #000;
+    font-family: Helvetica, sans-serif;
+    font-size: 2em;
+    padding: 20px;
+  }
+
+  img {
+    max-height: 50px;
+    padding-right: 10px;
+  }
+
+}
