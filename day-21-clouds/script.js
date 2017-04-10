@@ -28,7 +28,7 @@ function cloudCreator() {
   div.classList.add('cloud');
 
   var rand = Math.random();
-  if (rand > 0.95) { //Only create a cloud 20% of the time
+  if (rand > 0.8) { //Only create a cloud 20% of the time
 
     //We don't want all the clouds to be at the same y position
     var yPosition = (Math.floor(Math.random() * 300));
@@ -38,6 +38,7 @@ function cloudCreator() {
     var spritePosition = Math.floor(Math.random() * spritePositions.length);
     div.style.backgroundPositionX = spritePositions[spritePosition].x + 'px';
     div.style.backgroundPositionY = spritePositions[spritePosition].y + 'px';
+    div.style.left = cloudHolder.clientWidth + 'px';
 
     //Will look cooler if the clouds move at different speeds
     var speed = Math.ceil(Math.random() * 10);
@@ -57,6 +58,7 @@ function cloudCreator() {
 function moveClouds() {
   // console.log('how many?', clouds.length);
   for (var i = clouds.length - 1; i > -1; i--) {
+    //The cloud is off the screen. Remove and go to the next iteration
     if (clouds[i].x < -200) {
       cloudHolder.removeChild(clouds[i].div);
       clouds.splice(i, 1);
@@ -69,6 +71,6 @@ function moveClouds() {
   }
 }
 
-setInterval(cloudCreator, 500);
+setInterval(cloudCreator, 1000);
 
 setInterval(moveClouds, 50);
