@@ -12,11 +12,20 @@ var input = document.querySelector('#query');
 
 createList(foods);
 
-input.addEventListener('keyup', function() {
-  
+input.addEventListener('keyup', function(evt) {
+
+  console.log(evt.keyCode);
+
+  //filter only when you hit the enter key
+  if (evt.keyCode !== 13) {
+    return;
+  }
+
   var newList = [];
   for (var i = 0; i < foods.length; i++) {
-    if (foods[i].indexOf(input.value) > -1) { //contains
+
+    var containsLetter = foods[i].indexOf(input.value) > -1;
+    if (containsLetter) {
       newList.push(foods[i]);
     }
   }

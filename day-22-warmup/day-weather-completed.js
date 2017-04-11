@@ -1,3 +1,5 @@
+var chalk = require('chalk');
+
 var weather = {
 
   day: 'Apr 19, 2017',
@@ -131,9 +133,9 @@ var weather = {
 
 function printWeather(w) {
 
-  console.log('------------------------------');
-  console.log('Weather for', w.day);
-  console.log('------------------------------');
+  console.log(chalk.green('------------------------------'));
+  console.log(chalk.blue('Weather for ' + w.day));
+  console.log(chalk.green('------------------------------'));
 
   for (var i = 0; i < w.hourlyForecast.length; i++) {
     var hourNum;
@@ -151,7 +153,7 @@ function printWeather(w) {
     }
 
     console.log('\tChance of rain:', w.hourlyForecast[i].chanceOfRain * 100 + '%');
-    console.log('\tTemp:', w.hourlyForecast[i].temp);
+    console.log('\tTemp:', chalk.bgGreen(w.hourlyForecast[i].temp));
   }
 
 }
