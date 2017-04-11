@@ -15,7 +15,15 @@ var messages = [
 
 display.textContent = messages[0];
 
+previousButton.addEventListener('click', function() {
+  currentMessageIndex -= 1;
 
+  if (currentMessageIndex === -1) {
+    currentMessageIndex = messages.length - 1;
+  }
+
+  display.textContent = messages[currentMessageIndex];
+});
 
 nextButton.addEventListener('click', function() {
   currentMessageIndex += 1;
