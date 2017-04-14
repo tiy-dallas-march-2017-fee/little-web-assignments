@@ -23,7 +23,7 @@ $.ajax({
 
     html += Mustache.render(template, {
       index: i,
-      login: data.items[i].login,
+      item: data.items[i],
       rowClass: rowClass
     });
   }
