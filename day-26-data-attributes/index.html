@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="Stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <div data-id="9" id="click-me">click me</div>
+
+    <ol id="swapi-people">
+    </ol>
+
+    <div id="details"></div>
+
+    <script type="text/html" id="list-item-template">
+      <li data-index="{{index}}">{{name}}</li>
+    </script>
+
+    <script type="text/html" id="detail-template">
+      <h1>{{name}}</h1>
+      <div><strong>Birth Year</strong>{{birth_year}}</div>
+      <div><strong>Eye Color</strong>{{eye_color}}</div>
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.3.0/mustache.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+
+  </body>
+</html>
