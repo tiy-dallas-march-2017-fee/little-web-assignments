@@ -3,6 +3,7 @@ var swapiPeopleOL = document.querySelector('#swapi-people');
 var listItemTemplateText = document.querySelector('#list-item-template').innerHTML;
 var detailsDiv = document.querySelector('#details');
 var detailTemplate = document.querySelector('#detail-template').innerHTML;
+var spinner = document.querySelector('#spinner');
 
 clickMe.addEventListener('click', function() {
   var att = clickMe.getAttribute('data-id');
@@ -36,6 +37,7 @@ $.ajax({
 
   }
 
+  spinner.style.display = 'none';
   swapiPeopleOL.innerHTML = html;
 });
 
