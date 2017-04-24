@@ -1,0 +1,36 @@
+body {
+  font-family: Helvetica, Verdana, sans-serif;
+  text-align: center;
+}
+
+#pantry {
+  position: relative;
+}
+
+#pantry img {
+  position: absolute;
+}
+
+#score {
+  font-size: 4em;
+}
+
+#messaging {
+  font-size: 2em;
+}
+
+.doing-badly {
+  color: red;
+}
+
+.doing-well {
+  color: green;
+}
+
+.explosion {
+  background-image: url('explosion.png');
+  border: solid 1px red;
+  height: 128px;
+  position: absolute;
+  width: 128px;
+}
