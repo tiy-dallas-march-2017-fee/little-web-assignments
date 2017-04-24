@@ -2,9 +2,13 @@ var assert = require('assert');
 
 var Calculator = {
   add: function(input) {
-    if(input.indexOf(',') >= 0 || input.indexOf('\n') >= 0) {
 
-      var units = input.split(/[\n,]+/);
+    if (input.indexOf('//') === 0) {
+      //Do something smart here
+    }
+    else if(input.indexOf(',') >= 0 || input.indexOf('\n') >= 0) {
+
+      var units = input.split(/[\n,Z]/);
 
       var sum = 0;
       units.forEach(function(x) {
@@ -52,6 +56,12 @@ describe('String Calculator add method', function() {
     var result = Calculator.add('1\n2,3');
 
     assert.equal(6, result);
+  });
+
+  it('should return ? when the value passed in is "//;\n1;2"', function() {
+    var result = Calculator.add('//;\n1;2');
+
+    assert.equal(3, result);
   });
 
 });
