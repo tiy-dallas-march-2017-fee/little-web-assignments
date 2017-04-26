@@ -13,8 +13,11 @@ function Square(props) {
 class Board extends React.Component {
 
   renderSquare(i) {
-    return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
+    return <Square
+      value={this.props.squares[i]}
+      onClick={() => this.props.onClick(i)} />;
   }
+
   render() {
     return (
       <div>
@@ -85,7 +88,8 @@ class Game extends React.Component {
       status = 'Winner: ' + winner;
     }
     else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = 'Next player: '
+        + (this.state.xIsNext ? 'X' : 'O');
     }
 
     return (
@@ -133,3 +137,55 @@ function calculateWinner(squares) {
   }
   return null;
 }
+
+
+
+
+
+
+
+
+
+class Car {
+
+  honk() {
+    console.log('honk honk beep beep');
+  }
+
+}
+
+
+class Tesla extends Car {
+
+  constructor(color) {
+    super();
+
+    this.color = color;
+  }
+
+  honk() {
+    console.log('I don\'t care.');
+  }
+
+}
+
+
+var whiteTesla = new Tesla('white');
+whiteTesla.honk();
+
+var redTesla = new Tesla('red');
+
+console.log(whiteTesla);
+console.log(redTesla);
+
+
+
+function Truck() {
+
+}
+
+function Tacoma(color) {
+  this.color = color;
+}
+
+Tacoma.prototype = new Truck();
