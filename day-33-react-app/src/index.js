@@ -4,9 +4,14 @@ import './index.css';
 
 class App extends React.Component {
 
+  handleClick() {
+    alert('You click well, sir.');
+  }
+
   render() {
+
     return (
-      <div></div>
+      <div onClick={this.handleClick}>Click on me</div>
     )
   }
 
