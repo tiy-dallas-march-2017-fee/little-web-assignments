@@ -1,0 +1,10 @@
+.counter {
+  border: solid 1px #000;
+  display: inline-block;
+  font-size: 2em;
+  padding: 20px;
+}
+
+.counter span {
+  padding: 5px 20px;
+}

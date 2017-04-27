@@ -1,0 +1,10 @@
+.super-clock {
+  padding: 20px;
+  text-align: center;
+}
+
+.super-clock h2 {
+  background-color: black;
+  color: white;
+  padding: 15px;
+}
