@@ -1,0 +1,11 @@
+.simple-list ol {
+  padding-left: 0;
+}
+
+.simple-list li {
+  border: solid 1px #000;
+  list-style-type: none;
+  margin: 5px;
+  padding: 10px;
+  width: 100px;
+}
