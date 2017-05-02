@@ -4,6 +4,10 @@ import './ingredient-filter.css';
 class Filter extends Component {
 
   render() {
+    console.log('my filters?', this.props);
+
+    const filterItems = this.props.filters.map((x, i) => <li key={i + x}>{x}</li>)
+
     return (
       <div className="ingredient-filter">
 
@@ -12,8 +16,7 @@ class Filter extends Component {
         <input />
 
         <ol>
-          <li>salt</li>
-          <li>flour</li>
+          {filterItems}
         </ol>
 
       </div>

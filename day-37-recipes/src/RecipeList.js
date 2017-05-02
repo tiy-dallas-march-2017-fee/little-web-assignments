@@ -1,30 +1,34 @@
 import React, { Component } from 'react';
 import './recipe-list.css';
 
+class Recipe extends Component {
+  render() {
+    return (
+      <li>
+        <img src={this.props.url} alt={this.props.name} />
+        <div className="details">
+          <h2>{this.props.name}</h2>
+          <div className="ingredients">
+            Ingredients: {this.props.ingredients}
+          </div>
+        </div>
+      </li>
+    );
+  }
+}
+
 class RecipeList extends Component {
 
   render() {
+
+    var recipes = this.props.recipes.map((x, index) => {
+      return <Recipe url={x.url} name={x.name} ingredients={x.ingredients} key={index + x.name} />
+    });
+
     return (
       <div className="recipe-list">
         <ol>
-          <li>
-            <img src="http://img.recipepuppy.com/40627.jpg" alt="The Alt Title" />
-            <div className="details">
-              <h2>Aussie Pepper Steak / Steak With Creamy Pepper Sauce</h2>
-              <div className="ingredients">
-                Ingredients: beef broth, butter, cream, flour, vegetable oil, salt, sirloin steak, steak sauce
-              </div>
-            </div>
-          </li>
-
-          <li>
-            <img src="no-image-available.png" alt="The Alt Title" />
-              <div className="details">
-                <h2>Curried Steak With Orange Sauce &amp; Orange Ginger Steak Skewer</h2>
-                <div className="ingredients">Ingredients: orange zest, ginger, london broil, salt, white pepper</div>
-              </div>
-          </li>
-
+          {recipes}
         </ol>
       </div>
     );
