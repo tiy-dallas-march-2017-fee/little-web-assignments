@@ -1,0 +1,30 @@
+.recipe-list {
+  min-height: 150px;
+  float: left;
+  width: 50%;
+}
+
+
+.recipe-list li {
+  border: solid 1px #DDD;
+  clear: left;
+  margin: 0 0 20px 0;
+  overflow: auto;
+  padding: 10px 5px;
+}
+
+.recipe-list img {
+  float: left;
+  width: 30%;
+}
+
+.recipe-list .details {
+  float: left;
+  padding: 0 0 0 2%;
+  width: 68%;
+}
+
+.recipe-list h2 {
+  font-weight: bold;
+  margin-bottom: 5px;
+}

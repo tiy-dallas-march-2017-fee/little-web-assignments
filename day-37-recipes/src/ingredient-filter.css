@@ -1,0 +1,15 @@
+.ingredient-filter {
+  float: left;
+  padding: 0 1%;
+  width: 48%;
+}
+
+.ingredient-filter li {
+  border: solid 1px #DDD;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.ingredient-filter input {
+  margin: 10px 0;
+}

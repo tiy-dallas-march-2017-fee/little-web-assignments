@@ -1,0 +1,38 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+header {
+  background-color: #000;
+}
+
+header h1 {
+  color: #FFF;
+  font-size: 2em;
+  padding: 20px;
+}
+
+input {
+  padding: 5px;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 920px;
+}
+
+.contents {
+  border-bottom: solid 1px #000;
+  border-left: solid 1px #000;
+  border-right: solid 1px #000;
+  overflow: auto;
+  padding: 20px;
+}
+
+footer {
+  border-top: solid 2px #000;
+  clear: left;
+  padding-top: 5px;
+}
