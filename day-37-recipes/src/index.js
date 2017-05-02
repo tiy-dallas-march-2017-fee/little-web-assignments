@@ -5,6 +5,7 @@ import './index.css';
 import Query from './Query.js';
 import RecipeList from './RecipeList.js';
 import Filter from './Filter.js';
+import $ from 'jquery';
 
 class App extends React.Component {
 
@@ -12,25 +13,42 @@ class App extends React.Component {
     super();
 
     this.state = {
-      recipes: [
-        {
-          url: 'http://img.recipepuppy.com/40627.jpg',
-          name: 'Aussie Pepper Steak / Steak With Creamy Pepper Sauce - Changed',
-          ingredients: 'beef broth, butter, cream, flour, vegetable oil, salt, sirloin steak, steak sauce'
-        },
-        {
-          url: 'no-image-available.png',
-          name: 'Curried Steak With Orange Sauce &amp; Orange Ginger Steak Skewer - Changed',
-          ingredients: 'orange zest, ginger, london broil, salt, white pepper'
-        },
-        {
-          url: 'no-image-available.png',
-          name: 'new thing',
-          ingredients: 'happiness'
-        }
-      ],
+      recipes: [],
       filters: ['potatoes', 'ketchup', 'molasses']
     }
+  }
+
+  makeAjaxCall() {
+    $.ajax({
+      url: '/api/?i=onions,ketchup&q=steak'
+    })
+    .done((data) => {
+      //There data comes back as text. Lame. Turning that to objects.
+      data = JSON.parse(data);
+
+      let fixedData = data.results.map((x) => {
+
+        //check for thumbnail and if not...panic? Or make it work!
+
+        return {
+          name: x.title,
+          url: x.thumbnail,
+          ingredients: x.ingredients
+        };
+      })
+
+      console.log('new fancy data?', fixedData);
+      this.setState({
+        recipes: fixedData
+      });
+
+    });
+  }
+
+  componentDidMount() {
+    console.log('ajax here');
+
+    this.makeAjaxCall();
   }
 
   render() {

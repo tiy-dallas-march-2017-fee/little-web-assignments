@@ -22,7 +22,11 @@ class RecipeList extends Component {
   render() {
 
     var recipes = this.props.recipes.map((x, index) => {
-      return <Recipe url={x.url} name={x.name} ingredients={x.ingredients} key={index + x.name} />
+      return <Recipe
+              url={x.url}
+              name={x.name}
+              ingredients={x.ingredients}
+              key={index + x.name} />
     });
 
     return (
