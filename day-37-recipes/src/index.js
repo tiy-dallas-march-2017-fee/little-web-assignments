@@ -13,23 +13,25 @@ class App extends React.Component {
     super();
 
     this.state = {
-      recipes: [],
+      recipes: [], // I no longer need dummy data, because I am making the API call
       filters: ['potatoes', 'ketchup', 'molasses']
     }
   }
 
   makeAjaxCall() {
     $.ajax({
+      // This is proxying through create-react-app to avoid CORS
+      // Note the `package.json` had to change
       url: '/api/?i=onions,ketchup&q=steak'
     })
     .done((data) => {
       //There data comes back as text. Lame. Turning that to objects.
       data = JSON.parse(data);
 
-      let fixedData = data.results.map((x) => {
+      let mappedArray = data.results.map((x) => {
+        // Check for thumbnail and if not...panic? Or make it work!
 
-        //check for thumbnail and if not...panic? Or make it work!
-
+        // Here, I am mapping their names to my names.
         return {
           name: x.title,
           url: x.thumbnail,
@@ -37,17 +39,26 @@ class App extends React.Component {
         };
       })
 
-      console.log('new fancy data?', fixedData);
+      // This will cause the re-render!
       this.setState({
-        recipes: fixedData
+        recipes: mappedArray
       });
+
+      /*
+      // For Nikki
+      this.setState({
+        data: {
+          result: mappedArray
+        }
+      })
+      */
 
     });
   }
 
   componentDidMount() {
-    console.log('ajax here');
-
+    // Make the API call. Broke that out into a separate function, because you will
+    //  have to make this call whenever queries or filters change.
     this.makeAjaxCall();
   }
 
