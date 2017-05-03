@@ -3,6 +3,15 @@ import './ingredient-filter.css';
 
 class Filter extends Component {
 
+
+  handleKeyUp(evt) {
+    if (evt.keyCode === 13) {
+      console.log('complete');
+      this.props.onInputComplete();
+    }
+  }
+
+
   render() {
     console.log('my filters?', this.props);
 
@@ -13,7 +22,11 @@ class Filter extends Component {
 
         <h2>Would you like to filter?</h2>
 
-        <input />
+        <input
+          value={this.props.inputValue}
+          onChange={(evt) => this.props.onInputChange(evt.target.value)}
+          onKeyUp={(evt) => this.handleKeyUp(evt)}
+          />
 
         <ol>
           {filterItems}

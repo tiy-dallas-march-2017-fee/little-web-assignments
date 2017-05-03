@@ -14,16 +14,20 @@ class App extends React.Component {
 
     this.state = {
       recipes: [],
-      filters: ['potatoes', 'ketchup', 'molasses'],
-      queryInputValue: ''
+      filters: [],
+      queryInputValue: '',
+      filterInputValue: '',
+      query: ''
     }
 
     this.handleQueryInputChange = this.handleQueryInputChange.bind(this);
     this.handleQueryComplete = this.handleQueryComplete.bind(this);
+    this.handleFilterInputChange = this.handleFilterInputChange.bind(this);
+    this.handleFilterInputComplete = this.handleFilterInputComplete.bind(this);
   }
 
   makeAjaxCall() {
-    let urlToUse = `/api/?i=onions,ketchup&q=${this.state.queryInputValue}`;
+    let urlToUse = `/api/?i=${this.state.filters.join()}&q=${this.state.query}`;
     console.log('ajax call', urlToUse);
 
     $.ajax({
@@ -71,10 +75,30 @@ class App extends React.Component {
   }
 
   handleQueryComplete() {
-    this.makeAjaxCall();
     this.setState({
-      queryInputValue: ''
+        queryInputValue: '',
+        query: this.state.queryInputValue
+      },
+      () => this.makeAjaxCall()
+    );
+  }
+
+  handleFilterInputChange(val) {
+    this.setState({
+      filterInputValue: val
     });
+  }
+
+  handleFilterInputComplete() {
+    let copy = this.state.filters.slice();
+    copy.push(this.state.filterInputValue);
+
+    this.setState({
+        filters: copy,
+        filterInputValue: ''
+      },
+      () => this.makeAjaxCall()
+    );
   }
 
   render() {
@@ -90,7 +114,12 @@ class App extends React.Component {
             onInputComplete={this.handleQueryComplete}
             />
           <RecipeList recipes={this.state.recipes} />
-          <Filter filters={this.state.filters} />
+          <Filter
+            filters={this.state.filters}
+            inputValue={this.state.filterInputValue}
+            onInputChange={this.handleFilterInputChange}
+            onInputComplete={this.handleFilterInputComplete}
+            />
           <footer>This app is built with <a href="http://recipepuppy.com"><img src="recipepuppy.png" alt="recipe puppy" /></a>.</footer>
         </div>
       </div>
