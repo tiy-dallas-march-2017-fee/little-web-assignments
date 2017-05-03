@@ -13,7 +13,7 @@ class App extends React.Component {
     super();
 
     this.state = {
-      recipes: [], // I no longer need dummy data, because I am making the API call
+      recipes: [],
       filters: ['potatoes', 'ketchup', 'molasses']
     }
   }
@@ -29,12 +29,13 @@ class App extends React.Component {
       data = JSON.parse(data);
 
       let mappedArray = data.results.map((x) => {
-        // Check for thumbnail and if not...panic? Or make it work!
+        // Thumbnails can be blank. Fix that.
+        var url = x.thumbnail !== '' ? x.thumbnail : 'no-image-available.png'
 
         // Here, I am mapping their names to my names.
         return {
           name: x.title,
-          url: x.thumbnail,
+          url: url,
           ingredients: x.ingredients
         };
       })
