@@ -14,18 +14,25 @@ class App extends React.Component {
 
     this.state = {
       recipes: [],
-      filters: ['potatoes', 'ketchup', 'molasses']
+      filters: ['potatoes', 'ketchup', 'molasses'],
+      queryInputValue: ''
     }
+
+    this.handleQueryInputChange = this.handleQueryInputChange.bind(this);
+    this.handleQueryComplete = this.handleQueryComplete.bind(this);
   }
 
   makeAjaxCall() {
+    let urlToUse = `/api/?i=onions,ketchup&q=${this.state.queryInputValue}`;
+    console.log('ajax call', urlToUse);
+
     $.ajax({
       // This is proxying through create-react-app to avoid CORS
       // Note the `package.json` had to change
-      url: '/api/?i=onions,ketchup&q=steak'
+      url: urlToUse
     })
     .done((data) => {
-      //There data comes back as text. Lame. Turning that to objects.
+      //Their data comes back as text. Lame. Turning that to objects.
       data = JSON.parse(data);
 
       let mappedArray = data.results.map((x) => {
@@ -57,10 +64,17 @@ class App extends React.Component {
     });
   }
 
-  componentDidMount() {
-    // Make the API call. Broke that out into a separate function, because you will
-    //  have to make this call whenever queries or filters change.
+  handleQueryInputChange(val) {
+    this.setState({
+      queryInputValue: val
+    });
+  }
+
+  handleQueryComplete() {
     this.makeAjaxCall();
+    this.setState({
+      queryInputValue: ''
+    });
   }
 
   render() {
@@ -70,7 +84,11 @@ class App extends React.Component {
           <h1 className="container">My Recipe App</h1>
         </header>
         <div className="contents container">
-          <Query />
+          <Query
+            inputValue={this.state.queryInputValue}
+            onInputChange={this.handleQueryInputChange}
+            onInputComplete={this.handleQueryComplete}
+            />
           <RecipeList recipes={this.state.recipes} />
           <Filter filters={this.state.filters} />
           <footer>This app is built with <a href="http://recipepuppy.com"><img src="recipepuppy.png" alt="recipe puppy" /></a>.</footer>
