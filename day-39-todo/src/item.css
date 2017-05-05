@@ -1,0 +1,24 @@
+.item {
+  border: solid 1px #000;
+  margin: 5px 0;
+  padding: 10px;
+  position: relative;
+}
+
+.item span {
+  display: inline-block;
+  max-width: 80%;
+}
+
+.item span.done {
+  color: #777;
+  font-style: italic;
+  text-decoration: line-through;
+}
+
+.item button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 5px;
+}
