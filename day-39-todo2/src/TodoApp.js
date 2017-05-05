@@ -19,10 +19,20 @@ class TodoApp extends React.Component {
       url: `https://spiffy-todo-api.herokuapp.com/api/items?bucketId=${bucketId}`
     })
     .done((data) => {
-      console.log('what data do I have?', data);
+      // console.log('what data do I have?', data);
       this.setState({
         items: data.items
       })
+    });
+  }
+
+  deleteItem(id) {
+    $.ajax({
+      url: `https://spiffy-todo-api.herokuapp.com/api/item/${id}?bucketId=${bucketId}`,
+      method: 'DELETE'
+    })
+    .done((data) => {
+      this.refreshData();
     });
   }
 
@@ -43,9 +53,6 @@ class TodoApp extends React.Component {
       console.log('what do I get back?', data);
 
       this.refreshData();
-
-
-
     });
   }
 
@@ -64,10 +71,20 @@ class TodoApp extends React.Component {
     });
   }
 
+  //put button on item
+  //How do you delete with ajax?
+  //Hook up button so that when clicked it does the thing
+  //refresh after delete
+
 
   render() {
 
-    const listItems = this.state.items.map((x) => <li key={x.id}>{x.text}</li>)
+    const listItems = this.state.items.map((x) =>  {
+      return <li key={x.id}>
+               {x.text}
+               <button onClick={() => this.deleteItem(x.id)}>delete</button>
+             </li>
+    })
 
     return (
       <div>
