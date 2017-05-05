@@ -19,19 +19,22 @@ class TodoApp extends React.Component {
       url: `https://spiffy-todo-api.herokuapp.com/api/items?bucketId=${bucketId}`
     })
     .done((data) => {
-      // console.log('what data do I have?', data);
+      console.log('what data do I have?', data);
       this.setState({
         items: data.items
       })
     });
   }
 
-  deleteItem(id) {
+  deleteItem(id, evt) {
+    evt.stopPropagation();
+
+    console.log('deleting');
     $.ajax({
       url: `https://spiffy-todo-api.herokuapp.com/api/item/${id}?bucketId=${bucketId}`,
       method: 'DELETE'
     })
-    .done((data) => {
+    .done(() => {
       this.refreshData();
     });
   }
@@ -56,6 +59,23 @@ class TodoApp extends React.Component {
     });
   }
 
+  toggleCompletedness(id) {
+    console.log('totally updating');
+
+    $.ajax({
+      url: `https://spiffy-todo-api.herokuapp.com/api/item/${id}/togglestatus?bucketId=${bucketId}`,
+      method: 'POST'
+    })
+    .done(() => {
+      console.log('toggled state of', id);
+      this.refreshData();
+    })
+
+
+
+
+  }
+
   handleKeyUp(evt) {
     if (evt.keyCode === 13) {
       this.createNewItem(this.state.inputValue);
@@ -71,18 +91,16 @@ class TodoApp extends React.Component {
     });
   }
 
-  //put button on item
-  //How do you delete with ajax?
-  //Hook up button so that when clicked it does the thing
-  //refresh after delete
-
 
   render() {
 
     const listItems = this.state.items.map((x) =>  {
-      return <li key={x.id}>
+
+      const className = x.isComplete ? 'complete' : '';
+
+      return <li className={className} key={x.id} onClick={() => this.toggleCompletedness(x.id)}>
                {x.text}
-               <button onClick={() => this.deleteItem(x.id)}>delete</button>
+               <button onClick={(evt) => this.deleteItem(x.id, evt)}>delete</button>
              </li>
     })
 
