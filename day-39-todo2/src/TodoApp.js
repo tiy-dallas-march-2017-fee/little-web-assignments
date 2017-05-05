@@ -13,6 +13,17 @@ class TodoApp extends React.Component {
     };
   }
 
+  componentDidMount() {
+
+    $.ajax({
+      url: `https://spiffy-todo-api.herokuapp.com/api/items?bucketId=${bucketId}`
+    })
+    .done((data) => {
+      console.log('what data do I have?', data);
+    });
+
+  }
+
   createNewItem(inputText) {
     //ajax call to save data
     $.ajax({
