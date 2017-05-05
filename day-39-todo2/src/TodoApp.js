@@ -9,19 +9,25 @@ class TodoApp extends React.Component {
     super();
 
     this.state = {
-      inputValue: ''
+      inputValue: '',
+      items: []
     };
   }
 
-  componentDidMount() {
-
+  refreshData() {
     $.ajax({
       url: `https://spiffy-todo-api.herokuapp.com/api/items?bucketId=${bucketId}`
     })
     .done((data) => {
       console.log('what data do I have?', data);
+      this.setState({
+        items: data.items
+      })
     });
+  }
 
+  componentDidMount() {
+    this.refreshData();
   }
 
   createNewItem(inputText) {
@@ -35,6 +41,11 @@ class TodoApp extends React.Component {
     })
     .done((data) => {
       console.log('what do I get back?', data);
+
+      this.refreshData();
+
+
+
     });
   }
 
@@ -55,12 +66,20 @@ class TodoApp extends React.Component {
 
 
   render() {
+
+    const listItems = this.state.items.map((x) => <li key={x.id}>{x.text}</li>)
+
     return (
       <div>
         <input
           onKeyUp={(evt) => this.handleKeyUp(evt)}
           onChange={(evt) => this.handleChange(evt)}
+          value={this.state.inputValue}
           />
+
+        <ol>
+          {listItems}
+        </ol>
       </div>
     );
   }
