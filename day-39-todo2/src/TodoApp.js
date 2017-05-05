@@ -1,7 +1,14 @@
 import React from 'react';
 import $ from 'jquery';
 
+
+import Api from './Api.js';
+console.log(Api);
+
+
+
 const bucketId = 'ec5331fc-5e6d-44f0-990b-577f0d49c5e4';
+const baseUrl = 'https://spiffy-todo-api.herokuapp.com/api/';
 
 class TodoApp extends React.Component {
 
@@ -15,28 +22,25 @@ class TodoApp extends React.Component {
   }
 
   refreshData() {
-    $.ajax({
-      url: `https://spiffy-todo-api.herokuapp.com/api/items?bucketId=${bucketId}`
-    })
-    .done((data) => {
-      console.log('what data do I have?', data);
+
+    const cb = (data) => {
       this.setState({
         items: data.items
-      })
-    });
+      });
+    };
+
+    Api.refreshData(cb);
   }
 
   deleteItem(id, evt) {
     evt.stopPropagation();
 
-    console.log('deleting');
-    $.ajax({
-      url: `https://spiffy-todo-api.herokuapp.com/api/item/${id}?bucketId=${bucketId}`,
-      method: 'DELETE'
-    })
-    .done(() => {
-      this.refreshData();
-    });
+    Api.delete(id, () => this.refreshData());
+
+    // This won't work until we implement promises but it sure would be nice
+    // Api.delete(id)
+    //   .done(() => this.refreshData());
+    //
   }
 
   componentDidMount() {
@@ -44,30 +48,15 @@ class TodoApp extends React.Component {
   }
 
   createNewItem(inputText) {
-    //ajax call to save data
-    $.ajax({
-      url: `https://spiffy-todo-api.herokuapp.com/api/item?bucketId=${bucketId}`,
-      method: 'POST',
-      data: {
-        text: inputText
-      }
-    })
-    .done((data) => {
-      console.log('what do I get back?', data);
-
-      this.refreshData();
-    });
+    Api.createNewItem(inputText, () => this.refreshData());
   }
 
   toggleCompletedness(id) {
-    console.log('totally updating');
-
     $.ajax({
-      url: `https://spiffy-todo-api.herokuapp.com/api/item/${id}/togglestatus?bucketId=${bucketId}`,
+      url: `${baseUrl}item/${id}/togglestatus?bucketId=${bucketId}`,
       method: 'POST'
     })
     .done(() => {
-      console.log('toggled state of', id);
       this.refreshData();
     })
 
