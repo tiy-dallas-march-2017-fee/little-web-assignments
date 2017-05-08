@@ -1,32 +1,5 @@
 import React from 'react';
-import { createStore } from 'redux';
-
-
-var constants = {
-  INCREMENT: 'INCREMENT',
-  DECREMENT: 'DECREMENT'
-};
-
-
-
-const INCREMENT = { type: constants.INCREMENT };
-const DECREMENT = { type: constants.DECREMENT };
-
-const counterReducer = (state = { number: 0 }, action) => {
-
-  switch (action.type) {
-    case constants.INCREMENT:
-      return { number: state.number + 1 };
-    case constants.DECREMENT:
-      return { number: state.number - 1 };
-  }
-
-  return state;
-};
-
-var store = createStore(counterReducer);
-
-
+import { store, actions } from './CounterStore.js';
 
 class Counter extends React.Component {
 
@@ -42,20 +15,13 @@ class Counter extends React.Component {
     });
   }
 
-  down() {
-    store.dispatch(DECREMENT);
-  }
-
-  up() {
-    store.dispatch(INCREMENT);
-  }
-
   render() {
     return (
       <div>
-        <button onClick={() => this.down()}>-</button>
+        <button onClick={() => store.dispatch(actions.DECREMENT)}>-</button>
         <div>{this.state.number}</div>
-        <button onClick={() => this.up()}>+</button>
+        <button onClick={() => store.dispatch(actions.INCREMENT)}>+</button>
+        <button onClick={() => store.dispatch(actions.RESET)}>reset</button>
       </div>
     );
   }
