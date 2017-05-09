@@ -1,5 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
+import store from './store.js';
 
 
 import Api from './Api.js';
@@ -15,21 +16,11 @@ class TodoApp extends React.Component {
   constructor() {
     super();
 
-    this.state = {
-      inputValue: '',
-      items: []
-    };
+    this.state = store.getState();
   }
 
   refreshData() {
-
-    const cb = (data) => {
-      this.setState({
-        items: data.items
-      });
-    };
-
-    Api.refreshData(cb);
+    Api.refreshData();
   }
 
   deleteItem(id, evt) {
@@ -44,6 +35,8 @@ class TodoApp extends React.Component {
   }
 
   componentDidMount() {
+    store.subscribe(() => this.setState(store.getState()));
+
     this.refreshData();
   }
 
@@ -68,20 +61,18 @@ class TodoApp extends React.Component {
   handleKeyUp(evt) {
     if (evt.keyCode === 13) {
       this.createNewItem(this.state.inputValue);
-      this.setState({
-        inputValue: ''
-      });
     }
   }
 
   handleChange(evt) {
-    this.setState({
-      inputValue: evt.target.value
-    });
+    const action = { type: 'INPUT_CHANGE', value: evt.target.value };
+    store.dispatch(action);
   }
 
 
   render() {
+
+    console.log('render state', this.state);
 
     const listItems = this.state.items.map((x) =>  {
 
