@@ -6,7 +6,6 @@ class Filter extends Component {
 
   handleKeyUp(evt) {
     if (evt.keyCode === 13) {
-      console.log('complete');
       this.props.onInputComplete();
     }
   }

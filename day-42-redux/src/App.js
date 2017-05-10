@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import { store } from './store.js';
 import api from './Api.js';
+import Mimicker from './Mimicker.js';
+import Mimicker2 from './Mimicker2.js';
 
 class App extends Component {
 
@@ -48,6 +50,15 @@ class App extends Component {
         <ol>
           {items}
         </ol>
+
+        <hr />
+
+        <Mimicker />
+
+        <hr />
+
+        <Mimicker2 />
+
       </div>
     );
   }

@@ -5,7 +5,7 @@ class Query extends React.Component {
 
   handleKeyUp(evt) {
     if (evt.keyCode === 13) {
-      this.props.onInputComplete();      
+      this.props.onInputComplete();
     }
   }
 

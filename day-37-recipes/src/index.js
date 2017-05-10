@@ -6,19 +6,15 @@ import Query from './Query.js';
 import RecipeList from './RecipeList.js';
 import Filter from './Filter.js';
 import $ from 'jquery';
+import store from './store.js';
+
 
 class App extends React.Component {
 
   constructor() {
     super();
 
-    this.state = {
-      recipes: [],
-      filters: [],
-      queryInputValue: '',
-      filterInputValue: '',
-      query: ''
-    }
+    this.state = store.getState();
 
     this.handleQueryInputChange = this.handleQueryInputChange.bind(this);
     this.handleQueryComplete = this.handleQueryComplete.bind(this);
@@ -26,8 +22,12 @@ class App extends React.Component {
     this.handleFilterInputComplete = this.handleFilterInputComplete.bind(this);
   }
 
+  componentDidMount() {
+    store.subscribe(() => this.setState(store.getState()));
+  }
+
   makeAjaxCall() {
-    let urlToUse = `/api/?i=${this.state.filters.join()}&q=${this.state.query}`;
+    let urlToUse = `/api/?i=${this.state.filters.join()}&q=${this.state.queryInputValue}`;
     console.log('ajax call', urlToUse);
 
     $.ajax({
@@ -49,56 +49,41 @@ class App extends React.Component {
           url: url,
           ingredients: x.ingredients
         };
-      })
-
-      // This will cause the re-render!
-      this.setState({
-        recipes: mappedArray
       });
 
-      /*
-      // For Nikki
-      this.setState({
-        data: {
-          result: mappedArray
-        }
-      })
-      */
-
+      const action = { type: 'CHANGE_RECIPE_LIST', list: mappedArray };
+      store.dispatch(action);
     });
   }
 
   handleQueryInputChange(val) {
-    this.setState({
-      queryInputValue: val
-    });
+    store.dispatch({ type: 'CHANGE_INPUT', value: val });
   }
 
   handleQueryComplete() {
-    this.setState({
-        queryInputValue: '',
-        query: this.state.queryInputValue
-      },
-      () => this.makeAjaxCall()
-    );
+    store.dispatch({ type: 'SEARCH' });
+    this.makeAjaxCall();
   }
 
   handleFilterInputChange(val) {
-    this.setState({
-      filterInputValue: val
-    });
+    store.dispatch({ type: 'CHANGE_FILTER_INPUT', value: val });
   }
 
   handleFilterInputComplete() {
-    let copy = this.state.filters.slice();
-    copy.push(this.state.filterInputValue);
+    store.dispatch({ type: 'ADD_FILTER' });
+    //state won't be changed yet
+    this.makeAjaxCall();
 
-    this.setState({
-        filters: copy,
-        filterInputValue: ''
-      },
-      () => this.makeAjaxCall()
-    );
+
+    // let copy = this.state.filters.slice();
+    // copy.push(this.state.filterInputValue);
+    //
+    // this.setState({
+    //     filters: copy,
+    //     filterInputValue: ''
+    //   },
+    //   () => this.makeAjaxCall()
+    // );
   }
 
   render() {
