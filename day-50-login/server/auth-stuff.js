@@ -12,7 +12,8 @@ function setup(app) {
   app.use(session({
     secret: 'some secret',
     resave: true,
-    saveUnitialized: true
+    saveUnitialized: true,
+    cookie: { httpOnly: false }
   }));
   app.use(passport.initialize());
   app.use(passport.session());
@@ -53,13 +54,13 @@ function setup(app) {
 
 
 
-  app.get('/api/users', function (req, res, next) {
-    User.find()
-      .exec(function(err, users) {
-        if (err) { return next(err); }
-        res.send(users);
-      });
-  });
+  // app.get('/api/users', function (req, res, next) {
+  //   User.find()
+  //     .exec(function(err, users) {
+  //       if (err) { return next(err); }
+  //       res.send(users);
+  //     });
+  // });
 
   app.post('/api/signup', function(req, res, next) {
     const username = req.body.username;
