@@ -1,0 +1,18 @@
+.sign-up {
+
+}
+
+.sign-up .good-message {
+  background-color: #ccffff;
+  border: solid 1px #00cccc;
+}
+
+.sign-up .bad-message {
+  background-color: pink;
+  border: solid 1px red;
+}
+
+.sign-up .message {
+  margin: 10px;
+  padding: 10px;
+}

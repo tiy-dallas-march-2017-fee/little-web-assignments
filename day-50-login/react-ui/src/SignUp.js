@@ -1,8 +1,8 @@
 import React from 'react';
 import $ from 'jquery';
-import './login.css';
+import './sign-up.css';
 
-class Login extends React.Component {
+class SignUp extends React.Component {
 
   constructor() {
     super();
@@ -27,9 +27,9 @@ class Login extends React.Component {
     });
   }
 
-  handleLoginClick() {
+  handleSignUpClick() {
     $.ajax({
-      url: '/api/login',
+      url: '/api/signup',
       method: 'POST',
       data: {
         username: this.state.usernameValue,
@@ -39,10 +39,13 @@ class Login extends React.Component {
     .done((data) => {
       this.setState({
         errorMessage: '',
-        happyMessage: 'You did such a FINE job logging in.'
+        happyMessage: 'Successfully signed up user',
+        usernameValue: '',
+        passwordValue: ''
       });
     })
-    .fail((xhr) => {
+    .fail((xhr, error, responseText) => {
+      console.log('xhr', xhr);
       this.setState({
         errorMessage: xhr.status + ': ' + xhr.responseText,
         happyMessage: ''
@@ -62,8 +65,9 @@ class Login extends React.Component {
     }
 
     return (
-      <div className="login">
-        <h2>Login</h2>
+      <div className="sign-up">
+        <h2>Sign Up</h2>
+
         <input
           placeholder="username"
           value={this.state.usernameValue}
@@ -74,7 +78,7 @@ class Login extends React.Component {
           value={this.state.passwordValue}
           onChange={(evt) => this.handlePasswordChange(evt)}
           />
-        <button onClick={() => this.handleLoginClick()}>login</button>
+        <button onClick={() => this.handleSignUpClick()}>sign up</button>
 
         {message}
 
@@ -84,4 +88,5 @@ class Login extends React.Component {
 
 }
 
-module.exports = Login;
+
+module.exports = SignUp;

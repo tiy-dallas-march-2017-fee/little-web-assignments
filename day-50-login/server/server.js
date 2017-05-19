@@ -1,17 +1,20 @@
 const express = require('express');
 const path = require('path');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+mongoose.connect('mongodb://localhost:27020/test');
+
 // Priority serve any static files.
 app.use(express.static(path.resolve(__dirname, '../react-ui/build')));
 
-// Answer API requests.
-app.get('/api', function (req, res) {
-  res.set('Content-Type', 'application/json');
-  res.send('{"message":"Hello from the custom server!"}');
-});
+app.use(bodyParser.urlencoded({ extended: false}));
+
+require('./auth-stuff.js')(app);
+
 
 // All remaining requests return the React app, so it can handle routing.
 app.get('*', function(request, response) {
