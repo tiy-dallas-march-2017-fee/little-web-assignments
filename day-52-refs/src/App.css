@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+}
+
+nav {
+  background-color: #000;
+}
+
+nav li {
+  display: inline-block;
+  margin: 10px;
+}
+
+nav li a {
+  color: #FFF;
+}
