@@ -1,0 +1,15 @@
+.main {
+  border: solid 1px #000;
+  box-sizing: border-box;
+  float: left;
+  min-height: 500px;
+  width: 50%;
+}
+
+.side {
+  border: solid 1px red;
+  box-sizing: border-box;
+  float: right;
+  min-height: 500px;
+  width: 50%;
+}
