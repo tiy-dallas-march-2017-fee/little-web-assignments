@@ -97,7 +97,7 @@ console.log('This is the main index file.');
 
 console.log('Imported thing', _mod2.default);
 
-[1, 7, 9, 42].forEach(function (x) {
+[1, 7, 9, 42, 78].forEach(function (x) {
   return console.log(x);
 });
 

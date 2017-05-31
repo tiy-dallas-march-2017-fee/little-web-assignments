@@ -72,7 +72,7 @@
 
 "use strict";
 /* harmony default export */ __webpack_exports__["a"] = ({
-  name: 'This is an exported thing.'
+  name: 'This is an exported thing yo.'
 });
 
 
