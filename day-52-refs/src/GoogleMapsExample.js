@@ -30,7 +30,7 @@ class GoogleMapsExample extends React.Component {
 
     //Or hard-code the lat/long
     var marker = new window.google.maps.Marker({
-      position: { lat: -34.397, lng: 150.644 },
+      position: { lat: -34.397, lng: 150.944 },
       map: this.googleMap,
       title: 'Hover over the marker to see this text!'
     });
